@@ -1,0 +1,39 @@
+services:
+  backend-service:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ${PROJECT_NAME}-backend
+    ports:
+      - "127.0.0.1:${BACKEND_PORT}:8080"
+    environment:
+      - MOCK_API_URL=http://mock-api-service:${MOCK_API_PORT}
+      - SERVER_PORT=8080
+    depends_on:
+      mock-api-service:
+        condition: service_healthy
+    networks:
+      - internal-network  
+    restart: on-failure
+
+  mock-api-service:
+    build:
+      context: ./mock-api
+      dockerfile: Dockerfile
+    container_name: ${PROJECT_NAME}-mock-api
+    ports:
+      - "127.0.0.1:${MOCK_API_PORT}:3001"
+    volumes:
+      - ./mock-api/db.json:/app/db.json
+    networks:
+      - internal-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3001/', (response) => {process.exit(response.statusCode === 200 ? 0 : 1)})"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    restart: always
+networks:
+  internal-network:
+    driver: bridge
