@@ -13,7 +13,7 @@ services:
       mock-api-service:
         condition: service_healthy
     networks:
-      - internal-network  
+      - internal-network
     restart: on-failure
 
   mock-api-service:
@@ -23,8 +23,6 @@ services:
     container_name: ${PROJECT_NAME}-mock-api
     ports:
       - "127.0.0.1:${MOCK_API_PORT}:3001"
-    volumes:
-      - ./mock-api/db.json:/app/db.json
     networks:
       - internal-network
     healthcheck:
@@ -34,6 +32,20 @@ services:
       retries: 3
       start_period: 5s
     restart: always
+
+  mini-app-service:
+    build:
+      context: ./web-app
+      dockerfile: Dockerfile
+    container_name: ${PROJECT_NAME}-mini-app
+    ports:
+      - "127.0.0.1:${WEB_APP_PORT}:80"
+    depends_on:
+      - mock-api-service
+    networks:
+      - internal-network
+    restart: always
+
 networks:
   internal-network:
     driver: bridge

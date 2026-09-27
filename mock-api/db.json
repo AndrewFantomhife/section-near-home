@@ -1,0 +1,87 @@
+{
+  "sections": [
+    {
+      "id": 1,
+      "type": "sport",
+      "sport": "swimming",
+      "name": "Плавание «Дельфин»",
+      "district": "Октябрьский",
+      "address": "ул. Мира, 15",
+      "coach": "Ольга Кириллова",
+      "schedule": "Пн, Ср, Пт · 16:30–17:30",
+      "minAge": 6,
+      "price": 3000,
+      "spots": 4
+    },
+    {
+      "id": 2,
+      "type": "sport",
+      "sport": "swimming",
+      "name": " «Волна»",
+      "district": "Фрунзенский",
+      "address": "ул. Батурина, 4",
+      "coach": "Игорь Пастухов",
+      "schedule": "Ежедневно, кроме вс · 17:30",
+      "minAge": 7,
+      "price": 0,
+      "spots": 3
+    },
+    {
+      "id": 3,
+      "type": "sport",
+      "sport": "football",
+      "name": "Футбольная школа «Владимирские Соколы»",
+      "district": "Ленинский",
+      "address": "ул. Разина, 8",
+      "coach": "Артём Беляков",
+      "schedule": "Вт, Чт, Сб · 17:00–18:30",
+      "minAge": 7,
+      "price": 2400,
+      "spots": 5
+    },
+    {
+      "id": 4,
+      "type": "sport",
+      "sport": "judo",
+      "name": "Секция дзюдо «Клязьма»",
+      "district": "Фрунзенский",
+      "address": "Судогодское шоссе, 33",
+      "coach": "Николай Гуров",
+      "schedule": "Пн, Ср, Пт · 18:00–19:30",
+      "minAge": 6,
+      "price": 0,
+      "spots": 2
+    },
+    {
+      "id": 5,
+      "type": "creative",
+      "sport": "art",
+      "name": "Художественная студия «Радуга»",
+      "district": "Ленинский",
+      "address": "ул. Дворянская, 27",
+      "coach": "Елена Воронцова",
+      "schedule": "Вт, Чт · 15:30–17:00",
+      "minAge": 5,
+      "price": 1700,
+      "spots": 3
+    },
+    {
+      "id": 6,
+      "type": "creative",
+      "sport": "theatre",
+      "name": "Театральная студия «Овация»",
+      "district": "Октябрьский",
+      "address": "Октябрьский пр-т, 47",
+      "coach": "Светлана Быкова",
+      "schedule": "Пн, Ср · 17:00–18:30",
+      "minAge": 8,
+      "price": 0,
+      "spots": 6
+    }
+  ],
+  "districts": ["Ленинский", "Октябрьский", "Фрунзенский"],
+  "filterTypes": [
+    { "value": "sport", "label": "Спорт" },
+    { "value": "creative", "label": "Творчество" }
+  ]
+}

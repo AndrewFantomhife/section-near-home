@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ACT — запись в секцию</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page">
+  <div class="frame">
+
+    <div class="appbar">
+      <div class="brand">
+        <div class="brand-badge"><img src="logo.png" alt="ACT"></div>
+        <div>
+          <div class="brand-name">ACT</div>
+          <div class="brand-tag">запись в секции</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rail" id="rail">
+      <div class="rail-inner">
+        <div class="rail-step current" data-group="1">
+          <span class="rail-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span>Секция</span>
+        </div>
+        <span class="rail-line"></span>
+        <div class="rail-step" data-group="2">
+          <span class="rail-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span>Данные</span>
+        </div>
+        <span class="rail-line"></span>
+        <div class="rail-step" data-group="3">
+          <span class="rail-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span>Готово</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stages">
+
+      <!-- RECO + LIST: точка входа сайта. Открывается по прямой ссылке вида
+           index.html?type=swimming — её присылает чат-бот по результату теста. -->
+      <section class="stage stage-wide active" data-stage="recoList">
+        <div class="eyebrow" id="recoEyebrow">Рекомендация из чат-бота MAX</div>
+        <h2 id="recoTitle">Плавание</h2>
+        <p class="reco-why" id="recoWhy"></p>
+
+        <div class="filter-bar">
+          <button class="filter-toggle" id="filterToggle" type="button" aria-expanded="false" aria-controls="filterPanel">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M7 12h10M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span>Фильтр</span>
+            <span class="filter-badge" id="filterBadge" hidden></span>
+            <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="filter-panel" id="filterPanel" hidden>
+            <div class="filter-group">
+              <div class="filter-group-title">Вид занятий</div>
+              <div class="checks" id="checksType"></div>
+            </div>
+            <div class="filter-group">
+              <div class="filter-group-title">Район</div>
+              <div class="checks" id="checksDistrict"></div>
+            </div>
+            <button class="filter-reset" id="btnResetFilter" type="button">Сбросить фильтр</button>
+          </div>
+        </div>
+
+        <div class="list" id="sectionList"></div>
+      </section>
+
+      <!-- DETAIL -->
+      <section class="stage" data-stage="detail">
+        <button class="back" data-back><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Назад</button>
+        <div id="detailHost"></div>
+      </section>
+
+      <!-- FORM -->
+      <section class="stage" data-stage="form">
+        <button class="back" data-back><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Назад</button>
+        <h2 style="margin-bottom:4px;">Заявка на запись</h2>
+        <p class="lede" id="formSub">Секция</p>
+        <div class="field">
+          <label for="fParent">Имя родителя</label>
+          <input type="text" id="fParent" placeholder="Например, Мария Иванова">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="fPhone">Телефон</label>
+            <input type="tel" id="fPhone" placeholder="+7 900 000-00-00">
+          </div>
+          <div class="field">
+            <label for="fEmail">Email (необязательно)</label>
+            <input type="text" id="fEmail" placeholder="для копии подтверждения">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="fChild">Имя ребёнка</label>
+            <input type="text" id="fChild" placeholder="Имя">
+          </div>
+          <div class="field">
+            <label for="fAge">Возраст</label>
+            <select id="fAge">
+              <option value="5">5 лет</option>
+              <option value="6">6 лет</option>
+              <option value="7">7 лет</option>
+              <option value="8">8 лет</option>
+              <option value="9">9 лет</option>
+              <option value="10">10 лет</option>
+              <option value="11">11 лет</option>
+              <option value="12">12 лет</option>
+              <option value="13">13 лет</option>
+              <option value="14">14 лет</option>
+            </select>
+          </div>
+        </div>
+        <div class="consent">
+          <input type="checkbox" id="fConsent">
+          <label for="fConsent">Согласен(на) на обработку персональных данных ребёнка и родителя в соответствии с <a href="#" onclick="return false">политикой конфиденциальности</a> — это обязательно для оформления заявки.</label>
+        </div>
+        <button class="btn btn-primary btn-block" id="btnSubmitForm" disabled>Отправить заявку</button>
+      </section>
+
+      <!-- PROCESSING -->
+      <section class="stage" data-stage="processing">
+        <div class="eyebrow">Оформление записи</div>
+        <h2 id="procTitle">Отправляем заявку…</h2>
+        <p class="lede">Обычно занимает пару секунд.</p>
+        <div class="proc-list" id="procList"></div>
+      </section>
+
+      <!-- CONFIRM -->
+      <section class="stage" data-stage="confirm">
+        <div class="confirm-icon" id="confirmIcon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2 style="text-align:center;" id="confirmTitle">Заявка принята!</h2>
+        <p class="lede" style="text-align:center;margin-bottom:16px;" id="confirmLede">Место зарезервировано за вашим ребёнком.</p>
+        <div class="confirm-summary" id="confirmSummary"></div>
+        <div class="bot-note" id="confirmNote">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span id="confirmNoteText">Отправляем заявку на почту организатора…</span>
+        </div>
+        <button class="btn btn-ghost btn-block" id="btnRestart">Записать ещё одного ребёнка</button>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- EmailJS — отправка настоящего письма из статического сайта, без бэкенда.
+     Настройка (один раз, бесплатно): см. README.md → "Настоящие письма на почту". -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
