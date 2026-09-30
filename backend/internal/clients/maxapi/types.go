@@ -55,6 +55,10 @@ type Command struct {
 type Button struct {
 	Text    string
 	Payload string
+	// OpenAppUsername — если задан, кнопка открывает мини-приложение бота
+	// с этим username. Если пусто — обычная callback-кнопка.
+	OpenAppUsername string
+	LinkURL         string
 }
 
 // BotInfo содержит идентификационные данные бота.

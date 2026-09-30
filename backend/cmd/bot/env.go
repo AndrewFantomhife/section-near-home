@@ -22,7 +22,7 @@ func loadDotEnv() {
 			continue
 		}
 		defer f.Close()
-		log.Printf("Загружаем переменные из %s", path)
+		log.Printf("Loading environment from %s", path)
 
 		scanner := bufio.NewScanner(f)
 		for scanner.Scan() {
@@ -43,5 +43,5 @@ func loadDotEnv() {
 		}
 		return
 	}
-	log.Println("Файл .env не найден, используем переменные окружения как есть")
+	log.Println("File .env not found, using environment variables as is")
 }

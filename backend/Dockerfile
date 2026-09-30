@@ -9,7 +9,7 @@ RUN go mod download
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /bot-server ./cmd/bot/main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o /bot-server ./cmd/bot
 
 
 # Этап 2: минимальный финальный образ

@@ -7,24 +7,26 @@ import (
 )
 
 type Config struct {
-	MaxBotToken   string
-	MockAPIURL    string
-	ServerPort    string
-	MaxAPIBaseURL string
-	LogLevel      string
-	LogFormat     string
-	StorageKind   string
+	MaxBotToken    string
+	MockAPIURL     string
+	ServerPort     string
+	MaxAPIBaseURL  string
+	LogLevel       string
+	LogFormat      string
+	StorageKind    string
+	MaxBotUsername string
 }
 
 func Load() (*Config, error) {
 	cfg := &Config{
-		MaxBotToken:   os.Getenv("MAX_BOT_TOKEN"),
-		MockAPIURL:    getEnvOrDefault("MOCK_API_URL", "http://localhost:3001"),
-		ServerPort:    getEnvOrDefault("SERVER_PORT", "8080"),
-		MaxAPIBaseURL: getEnvOrDefault("MAX_API_BASE_URL", "https://platform-api2.max.ru"),
-		LogLevel:      getEnvOrDefault("LOG_LEVEL", "info"),
-		LogFormat:     getEnvOrDefault("LOG_FORMAT", "text"),
-		StorageKind:   getEnvOrDefault("STORAGE_KIND", "memory"),
+		MaxBotToken:    os.Getenv("MAX_BOT_TOKEN"),
+		MockAPIURL:     getEnvOrDefault("MOCK_API_URL", "http://localhost:3001"),
+		ServerPort:     getEnvOrDefault("SERVER_PORT", "8080"),
+		MaxAPIBaseURL:  getEnvOrDefault("MAX_API_BASE_URL", "https://platform-api2.max.ru"),
+		LogLevel:       getEnvOrDefault("LOG_LEVEL", "info"),
+		LogFormat:      getEnvOrDefault("LOG_FORMAT", "text"),
+		StorageKind:    getEnvOrDefault("STORAGE_KIND", "memory"),
+		MaxBotUsername: getEnvOrDefault("MAX_BOT_USERNAME", ""),
 	}
 
 	if err := cfg.validate(); err != nil {
